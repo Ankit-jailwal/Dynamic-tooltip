@@ -8,7 +8,7 @@
         android:id="@+id/targetElement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/target_elements" />
+        />
 
     <EditText
         android:id="@+id/editTooltipText"
