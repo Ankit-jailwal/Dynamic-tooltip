@@ -70,4 +70,10 @@
         android:hint="Arrow Height"
         android:inputType="number" />
 
+    <Button
+        android:id="@+id/btnPrintData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Print Data" />
+
 </LinearLayout>
