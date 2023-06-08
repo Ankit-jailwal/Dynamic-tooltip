@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.TooltipEditorFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Spinner
+        android:id="@+id/targetElement"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Screen 2" />
+        android:layout_height="wrap_content"
+        android:entries="@array/target_elements" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/editTooltipText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tooltip Text" />
+
+    <EditText
+        android:id="@+id/editTextSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Text Size"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editPadding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Padding"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editBackgroundColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Background Color" />
+
+    <EditText
+        android:id="@+id/editTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Text Color" />
+
+    <EditText
+        android:id="@+id/editCornerRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Corner Radius"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTooltipWidth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tooltip Width"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editArrowWidth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Arrow Width"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editArrowHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Arrow Height"
+        android:inputType="number" />
+
+</LinearLayout>
