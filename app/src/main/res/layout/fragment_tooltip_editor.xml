@@ -1,5 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="50dp"
+    android:layout_marginHorizontal="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,14 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Target Element"
-        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        />
 
     <Spinner
         android:id="@+id/target_element_spinner"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/target_element_label"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +31,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tooltip Text"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
         app:layout_constraintTop_toBottomOf="@+id/target_element_spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/tooltip_text_edit_text"
@@ -45,10 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Text Size"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
         app:layout_constraintTop_toBottomOf="@+id/tooltip_text_edit_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        />
 
     <EditText
         android:id="@+id/text_size_edit_text"
