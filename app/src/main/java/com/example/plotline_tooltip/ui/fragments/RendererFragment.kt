@@ -18,6 +18,7 @@ import com.example.plotline_tooltip.databinding.FragmentRendererBinding
 import com.example.plotline_tooltip.databinding.FragmentTooltipEditorBinding
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
+import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModelFactory
 
 class RendererFragment : Fragment() {
 
@@ -32,7 +33,7 @@ class RendererFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity(), TooltipViewModelFactory(requireContext())).get(TooltipViewModel::class.java)
         binding = FragmentRendererBinding.inflate(inflater, container, false)
         tooltipHelper = TooltipHelper(requireContext())
         tooltipHandler = Handler(Looper.getMainLooper())
