@@ -1,0 +1,350 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="50dp"
+    android:layout_marginHorizontal="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/target_element_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target Element"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Spinner
+        android:id="@+id/target_element_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/target_element_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tooltip_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tooltip Text"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/target_element_spinner"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/tooltip_text_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="Input"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_text_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/textsize_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_text_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:constraint_referenced_ids="text_size_label,text_size_edit_text" />
+
+    <TextView
+        android:id="@+id/text_size_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Size"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_text_edit_text"
+        app:layout_constraintStart_toStartOf="@id/textsize_container"
+        />
+
+    <EditText
+        android:id="@+id/text_size_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/text_size_label"
+        app:layout_constraintStart_toStartOf="@id/textsize_container"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/padding_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/textsize_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:constraint_referenced_ids="padding_label,padding_edit_text" />
+
+    <TextView
+        android:id="@+id/padding_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Padding"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@id/tooltip_text_edit_text"
+        app:layout_constraintStart_toStartOf="@id/padding_container"
+        />
+
+    <EditText
+        android:id="@+id/padding_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/padding_label"
+        app:layout_constraintStart_toStartOf="@id/padding_container"
+        />
+
+    <TextView
+        android:id="@+id/background_color_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Background Color"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/padding_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+    <EditText
+        android:id="@+id/background_color_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="Input"
+        app:layout_constraintTop_toBottomOf="@+id/background_color_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_color_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Color"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+    <EditText
+        android:id="@+id/text_color_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="Input"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/corner_radius_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:constraint_referenced_ids="corner_radius_label,corner_radius_edit_text" />
+
+    <TextView
+        android:id="@+id/corner_radius_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corner Radius"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="@id/corner_radius_container"
+        />
+
+    <EditText
+        android:id="@+id/corner_radius_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_label"
+        app:layout_constraintStart_toStartOf="@id/corner_radius_container"
+        />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/width_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintLeft_toRightOf="@id/corner_radius_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:constraint_referenced_ids="tooltip_width_label,arrow_width_edit_text" />
+
+    <TextView
+        android:id="@+id/tooltip_width_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tooltip Width"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="@id/width_container"
+        />
+
+    <EditText
+        android:id="@+id/tooltip_width_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_label"
+        app:layout_constraintStart_toStartOf="@id/width_container" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/arrow_width_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:constraint_referenced_ids="arrow_width_label,arrow_width_edit_text" />
+
+    <TextView
+        android:id="@+id/arrow_width_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrow Width"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
+        app:layout_constraintStart_toStartOf="@id/arrow_width_container"
+         />
+
+    <EditText
+        android:id="@+id/arrow_width_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_width_label"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/arrow_height_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
+        app:layout_constraintLeft_toRightOf="@id/arrow_width_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:constraint_referenced_ids="arrow_width_label,arrow_width_edit_text" />
+    <TextView
+        android:id="@+id/arrow_height_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrow Height"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
+        app:layout_constraintStart_toStartOf="@id/arrow_height_container"
+        />
+
+    <EditText
+        android:id="@+id/arrow_height_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="3"
+        android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_height_label"
+        app:layout_constraintStart_toStartOf="@id/arrow_height_container"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnPrintData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Render Tooltip"
+        android:textSize="14sp"
+        android:lineHeight="22sp"
+        android:layout_marginHorizontal="9dp"
+        android:layout_marginVertical="8dp"
+        android:backgroundTint="@color/render_button_color"
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_height_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
