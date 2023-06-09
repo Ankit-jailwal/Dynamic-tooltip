@@ -10,6 +10,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.PopupWindow
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
@@ -33,7 +34,7 @@ class RendererFragment : Fragment() {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
 
-        button = view.findViewById(R.id.button_left_bottom)
+        button = view.findViewById(R.id.button_center)
         tooltipHelper = TooltipHelper(requireContext())
         tooltipHandler = Handler(Looper.getMainLooper())
         tooltipRunnable = Runnable {
@@ -50,17 +51,15 @@ class RendererFragment : Fragment() {
     fun showTooltip(anchorView: View, tooltipText: String) {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
-
-        // Set tooltip text
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         tooltipTextView.text = tooltipText
 
-        val popupWindow = PopupWindow(tooltipView,
+        val popupWindow = PopupWindow(
+            tooltipView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
-            true)
-
-        // Measure tooltip view
+            true
+        )
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
@@ -71,22 +70,26 @@ class RendererFragment : Fragment() {
         val anchorY = location[1]
 
         val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
-        val tooltipY = anchorY + anchorView.height
+        val tooltipY = anchorY - tooltipHeight
 
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
         val tooltipBottomY = tooltipY + tooltipHeight
         val isTooltipBelowScreen = tooltipBottomY > screenHeight
 
         if (isTooltipBelowScreen) {
-            val adjustedTooltipY = anchorY - tooltipHeight
+            val adjustedTooltipY = anchorY + anchorView.height
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
         } else {
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
 
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
-        val arrowParams = arrowView.layoutParams as ViewGroup.MarginLayoutParams
-        arrowParams.leftMargin = tooltipWidth / 2 - arrowView.measuredWidth / 2
+
+        val anchorCenterX = anchorX + anchorView.width / 2
+        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
+
+        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
+        arrowParams.setMargins(arrowX, 0, 0, 0)
 
         arrowView.layoutParams = arrowParams
     }
