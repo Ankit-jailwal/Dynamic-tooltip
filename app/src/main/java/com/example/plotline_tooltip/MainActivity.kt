@@ -2,10 +2,8 @@ package com.example.plotline_tooltip
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.plotline_tooltip.ui.fragments.RendererFragment
 import com.example.plotline_tooltip.ui.fragments.TooltipEditorFragment
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModelFactory
