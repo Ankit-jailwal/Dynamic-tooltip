@@ -42,7 +42,6 @@ class TooltipEditorFragment : Fragment() {
             tooltipHelper.showTooltip(button, tooltipText, tooltipImageResId)
             tooltipHandler.postDelayed(tooltipRunnable, 2000) // Hide tooltip after 2 seconds
             true
-            true
         }
 
 
