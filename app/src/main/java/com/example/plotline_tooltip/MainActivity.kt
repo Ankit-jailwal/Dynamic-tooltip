@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel = ViewModelProvider(this).get(TooltipViewModel::class.java)
 
         if (savedInstanceState == null) {
-            showToolTipEditor()
+            showRenderer()
         }
     }
 
