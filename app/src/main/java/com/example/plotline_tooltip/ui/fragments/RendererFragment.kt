@@ -1,23 +1,29 @@
 package com.example.plotline_tooltip.ui.fragments
 
+import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.DisplayMetrics
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
+import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class RendererFragment : Fragment() {
 
     private lateinit var sharedViewModel: TooltipViewModel
-
+    private lateinit var button: Button
+    private lateinit var tooltipHandler: Handler
+    private lateinit var tooltipHelper: TooltipHelper
+    private lateinit var tooltipRunnable: Runnable
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,8 +31,71 @@ class RendererFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_renderer, container, false)
 
+
         sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
 
+        button = view.findViewById(R.id.button_center)
+        tooltipHelper = TooltipHelper(requireContext())
+        tooltipHandler = Handler(Looper.getMainLooper())
+        tooltipRunnable = Runnable {
+            tooltipHelper.hideTooltip()
+        }
+        button.setOnLongClickListener {
+            val tooltipText = "This is a tooltip message"
+            showTooltip(button, tooltipText)
+            true
+        }
         return view
+    }
+
+    fun showTooltip(anchorView: View, tooltipText: String) {
+        val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
+        val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
+        tooltipTextView.text = tooltipText
+
+        val popupWindow = PopupWindow(
+            tooltipView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
+        )
+        tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+        val tooltipWidth = tooltipView.measuredWidth
+        val tooltipHeight = tooltipView.measuredHeight
+
+        val location = IntArray(2)
+        anchorView.getLocationOnScreen(location)
+        val anchorX = location[0]
+        val anchorY = location[1]
+
+        val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
+        val tooltipY = anchorY - tooltipHeight
+
+        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        val tooltipBottomY = tooltipY + tooltipHeight
+        val isTooltipBelowScreen = tooltipBottomY > screenHeight
+
+        if (isTooltipBelowScreen) {
+            val adjustedTooltipY = anchorY + anchorView.height
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
+        } else {
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
+        }
+
+        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+
+        val anchorCenterX = anchorX + anchorView.width / 2
+        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
+
+        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
+        arrowParams.setMargins(arrowX, 0, 0, 0)
+
+        arrowView.layoutParams = arrowParams
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        tooltipHandler.removeCallbacks(tooltipRunnable)
     }
 }

@@ -1,14 +1,15 @@
 package com.example.plotline_tooltip.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.DisplayMetrics
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
@@ -36,20 +37,12 @@ class TooltipEditorFragment : Fragment() {
         tooltipRunnable = Runnable {
             tooltipHelper.hideTooltip()
         }
-        button.setOnLongClickListener {
-            val tooltipText = "Tooltip Text"
-            val tooltipImageResId = R.drawable.ic_launcher_background
-            tooltipHelper.showTooltip(button, tooltipText, tooltipImageResId)
-            tooltipHandler.postDelayed(tooltipRunnable, 2000) // Hide tooltip after 2 seconds
-            true
+        button.setOnClickListener {
+
         }
 
 
         return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        tooltipHandler.removeCallbacks(tooltipRunnable)
-    }
 }
