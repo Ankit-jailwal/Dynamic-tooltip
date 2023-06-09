@@ -1,79 +1,204 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/target_element_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target Element"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
-        android:id="@+id/targetElement"
-        android:layout_width="match_parent"
+        android:id="@+id/target_element_spinner"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/target_element_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tooltip_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tooltip Text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/target_element_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTooltipText"
-        android:layout_width="match_parent"
+        android:id="@+id/tooltip_text_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Tooltip Text" />
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_text_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_size_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Size"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_text_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextSize"
-        android:layout_width="match_parent"
+        android:id="@+id/text_size_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Text Size"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/text_size_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/padding_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Padding"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/text_size_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editPadding"
-        android:layout_width="match_parent"
+        android:id="@+id/padding_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Padding"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/padding_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/background_color_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Background Color"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/padding_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editBackgroundColor"
-        android:layout_width="match_parent"
+        android:id="@+id/background_color_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Background Color" />
+        app:layout_constraintTop_toBottomOf="@+id/background_color_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_color_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Color"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextColor"
-        android:layout_width="match_parent"
+        android:id="@+id/text_color_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Text Color" />
+        app:layout_constraintTop_toBottomOf="@+id/text_color_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/corner_radius_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corner Radius"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editCornerRadius"
-        android:layout_width="match_parent"
+        android:id="@+id/corner_radius_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Corner Radius"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tooltip_width_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tooltip Width"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTooltipWidth"
-        android:layout_width="match_parent"
+        android:id="@+id/tooltip_width_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Tooltip Width"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/arrow_width_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrow Width"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editArrowWidth"
-        android:layout_width="match_parent"
+        android:id="@+id/arrow_width_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Arrow Width"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_width_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/arrow_height_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrow Height"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_width_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editArrowHeight"
-        android:layout_width="match_parent"
+        android:id="@+id/arrow_height_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Arrow Height"
-        android:inputType="number" />
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_height_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnPrintData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Print Data" />
+        android:text="Print Data"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_height_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
