@@ -1,6 +1,6 @@
 package com.example.plotline_tooltip.data.db
 
-import TooltipDataEntity
+import com.example.plotline_tooltip.data.model.TooltipDataEntity
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
