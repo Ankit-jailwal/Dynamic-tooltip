@@ -32,7 +32,7 @@ class RendererFragment : Fragment() {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
 
-        button = view.findViewById(R.id.button1)
+        button = view.findViewById(R.id.button_left_bottom)
         tooltipHelper = TooltipHelper(requireContext())
         tooltipHandler = Handler(Looper.getMainLooper())
         tooltipRunnable = Runnable {
@@ -50,7 +50,6 @@ class RendererFragment : Fragment() {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
 
-        // Set tooltip text
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         tooltipTextView.text = tooltipText
 
@@ -59,32 +58,27 @@ class RendererFragment : Fragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true)
 
-        // Measure tooltip view
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
 
-        // Calculate anchor view position
         val location = IntArray(2)
         anchorView.getLocationOnScreen(location)
         val anchorX = location[0]
         val anchorY = location[1]
 
-        // Calculate tooltip position
         val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
         val tooltipY = anchorY + anchorView.height
 
-        // Set tooltip position relative to anchor view
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
 
-        // Calculate arrow position
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
         val arrowParams = arrowView.layoutParams as ViewGroup.MarginLayoutParams
         arrowParams.leftMargin = tooltipWidth / 2 - arrowView.measuredWidth / 2
 
-        // Update arrow position
         arrowView.layoutParams = arrowParams
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         tooltipHandler.removeCallbacks(tooltipRunnable)
