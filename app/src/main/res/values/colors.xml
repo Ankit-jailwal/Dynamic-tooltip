@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_200">#F5F5F5</color>
     <color name="render_button_color">#0958D9</color>
-    <color name="border_color">#E0E0E0</color>
+    <color name="secondary_color">#40000000</color>
 </resources>
