@@ -183,6 +183,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/corner_radius_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:constraint_referenced_ids="corner_radius_label,corner_radius_edit_text" />
+
     <TextView
         android:id="@+id/corner_radius_label"
         android:layout_width="wrap_content"
@@ -194,7 +202,7 @@
         android:textStyle="normal"
         android:textFontWeight="500"
         app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/corner_radius_container"
         />
 
     <EditText
@@ -207,9 +215,20 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
         app:layout_constraintTop_toBottomOf="@+id/corner_radius_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/corner_radius_container"
+        />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/width_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintLeft_toRightOf="@id/corner_radius_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:constraint_referenced_ids="tooltip_width_label,arrow_width_edit_text" />
 
     <TextView
         android:id="@+id/tooltip_width_label"
@@ -221,8 +240,8 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
-        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
+        app:layout_constraintStart_toStartOf="@id/width_container"
         />
 
     <EditText
@@ -235,9 +254,17 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
         app:layout_constraintTop_toBottomOf="@+id/tooltip_width_label"
+        app:layout_constraintStart_toStartOf="@id/width_container" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/arrow_width_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:constraint_referenced_ids="arrow_width_label,arrow_width_edit_text" />
 
     <TextView
         android:id="@+id/arrow_width_label"
@@ -249,8 +276,8 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
-        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/corner_radius_edit_text"
+        app:layout_constraintStart_toStartOf="@id/arrow_width_container"
          />
 
     <EditText
@@ -263,10 +290,18 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
         app:layout_constraintTop_toBottomOf="@+id/arrow_width_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/arrow_height_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
+        app:layout_constraintLeft_toRightOf="@id/arrow_width_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:constraint_referenced_ids="arrow_width_label,arrow_width_edit_text" />
     <TextView
         android:id="@+id/arrow_height_label"
         android:layout_width="wrap_content"
@@ -277,8 +312,8 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
-        app:layout_constraintTop_toBottomOf="@+id/arrow_width_edit_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tooltip_width_edit_text"
+        app:layout_constraintStart_toStartOf="@id/arrow_height_container"
         />
 
     <EditText
@@ -291,8 +326,9 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
+        app:layout_constraintWidth_percent="0.5"
         app:layout_constraintTop_toBottomOf="@+id/arrow_height_label"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/arrow_height_container"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
