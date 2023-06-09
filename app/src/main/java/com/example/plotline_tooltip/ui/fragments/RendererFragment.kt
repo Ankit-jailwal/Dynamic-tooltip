@@ -14,84 +14,68 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
+import com.example.plotline_tooltip.databinding.FragmentRendererBinding
+import com.example.plotline_tooltip.databinding.FragmentTooltipEditorBinding
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
 
 class RendererFragment : Fragment() {
 
     private lateinit var sharedViewModel: TooltipViewModel
-    private lateinit var button: Button
     private lateinit var tooltipHandler: Handler
     private lateinit var tooltipHelper: TooltipHelper
     private lateinit var tooltipRunnable: Runnable
+    private lateinit var binding: FragmentRendererBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_renderer, container, false)
-
-
         sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
-
-        button = view.findViewById(R.id.button_center)
+        binding = FragmentRendererBinding.inflate(inflater, container, false)
         tooltipHelper = TooltipHelper(requireContext())
         tooltipHandler = Handler(Looper.getMainLooper())
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         tooltipRunnable = Runnable {
             tooltipHelper.hideTooltip()
         }
-        button.setOnLongClickListener {
+
+        binding.buttonCenter.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            showTooltip(button, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonCenter, tooltipText)
             true
         }
-        return view
-    }
 
-    fun showTooltip(anchorView: View, tooltipText: String) {
-        val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
-        val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
-        tooltipTextView.text = tooltipText
-
-        val popupWindow = PopupWindow(
-            tooltipView,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
+        binding.buttonLeftBottom.setOnLongClickListener {
+            val tooltipText = "This is a tooltip message"
+            tooltipHelper.showTooltip(binding.buttonLeftBottom, tooltipText)
             true
-        )
-        tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-        val tooltipWidth = tooltipView.measuredWidth
-        val tooltipHeight = tooltipView.measuredHeight
-
-        val location = IntArray(2)
-        anchorView.getLocationOnScreen(location)
-        val anchorX = location[0]
-        val anchorY = location[1]
-
-        val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
-        val tooltipY = anchorY - tooltipHeight
-
-        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        val tooltipBottomY = tooltipY + tooltipHeight
-        val isTooltipBelowScreen = tooltipBottomY > screenHeight
-
-        if (isTooltipBelowScreen) {
-            val adjustedTooltipY = anchorY + anchorView.height
-            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
-        } else {
-            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
 
-        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+        binding.buttonLeftTop.setOnLongClickListener {
+            val tooltipText = "This is a tooltip message"
+            tooltipHelper.showTooltip(binding.buttonLeftTop, tooltipText)
+            true
+        }
 
-        val anchorCenterX = anchorX + anchorView.width / 2
-        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
+        binding.buttonRightTop.setOnLongClickListener {
+            val tooltipText = "This is a tooltip message"
+            tooltipHelper.showTooltip(binding.buttonRightTop, tooltipText)
+            true
+        }
 
-        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
-        arrowParams.setMargins(arrowX, 0, 0, 0)
-
-        arrowView.layoutParams = arrowParams
+        binding.buttonRightBottom.setOnLongClickListener {
+            val tooltipText = "This is a tooltip message"
+            tooltipHelper.showTooltip(binding.buttonRightBottom, tooltipText)
+            true
+        }
     }
 
     override fun onDestroyView() {

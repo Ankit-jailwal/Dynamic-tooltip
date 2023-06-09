@@ -1,41 +1,62 @@
 package com.example.plotline_tooltip.ui.tooltip
 import android.content.Context
-import android.graphics.drawable.Drawable
+import android.content.res.Resources
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.view.ViewGroup
+import android.widget.*
 import com.example.plotline_tooltip.R
 
 
 class TooltipHelper(private val context: Context) {
     private var tooltipLayout: View? = null
-    private var tooltipText: TextView? = null
-    private var tooltipImage: ImageView? = null
 
-    fun showTooltip(view: View, text: String, imageResId: Int) {
-        if (tooltipLayout == null) {
-            tooltipLayout = LayoutInflater.from(context).inflate(R.layout.layout_tooltip, null)
-            tooltipText = tooltipLayout?.findViewById(R.id.tooltipText)
-            tooltipImage = tooltipLayout?.findViewById(R.id.tooltipImage)
-        }
+    fun showTooltip(anchorView: View, tooltipText: String) {
+        val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
+        val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
+        tooltipTextView.text = tooltipText
 
-        tooltipText?.text = text
-        tooltipImage?.setImageDrawable(ContextCompat.getDrawable(context, imageResId))
-
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
+        val popupWindow = PopupWindow(
+            tooltipView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
         )
+        tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+        val tooltipWidth = tooltipView.measuredWidth
+        val tooltipHeight = tooltipView.measuredHeight
 
-        val parent = view.parent as LinearLayout
-        if (parent.getChildAt(parent.childCount - 1) != tooltipLayout) {
-            parent.addView(tooltipLayout, params)
+        val location = IntArray(2)
+        anchorView.getLocationOnScreen(location)
+        val anchorX = location[0]
+        val anchorY = location[1]
+
+        val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
+        val tooltipY = anchorY + anchorView.height
+
+        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        val tooltipBottomY = tooltipY + tooltipHeight
+        val isTooltipBelowScreen = tooltipBottomY > screenHeight
+
+        if (isTooltipBelowScreen) {
+            val adjustedTooltipY = anchorY - tooltipHeight
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
+        } else {
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
 
-        tooltipLayout?.visibility = View.VISIBLE
+        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+
+        val anchorCenterX = anchorX + anchorView.width / 2
+        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
+
+        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
+        arrowParams.setMargins(arrowX, 0, 0, 0)
+
+        arrowView.layoutParams = arrowParams
+
     }
 
     fun hideTooltip() {
