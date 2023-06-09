@@ -41,6 +41,7 @@
 
     <EditText
         android:id="@+id/tooltip_text_edit_text"
+        android:background="@drawable/edittext_bg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -102,6 +103,7 @@
 
     <EditText
         android:id="@+id/background_color_edit_text"
+        android:background="@drawable/edittext_bg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/background_color_label"
