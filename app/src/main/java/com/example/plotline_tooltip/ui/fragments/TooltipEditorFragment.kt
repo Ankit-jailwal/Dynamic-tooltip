@@ -36,8 +36,20 @@ class TooltipEditorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnPrintData.setOnClickListener {
-
+            showRenderer()
         }
+    }
+
+    private fun showRenderer() {
+        val fragment = RendererFragment()
+        replaceFragment(fragment)
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

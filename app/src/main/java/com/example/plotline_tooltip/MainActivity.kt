@@ -19,17 +19,12 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel = ViewModelProvider(this).get(TooltipViewModel::class.java)
 
         if (savedInstanceState == null) {
-            showRenderer()
+            showToolTipEditor()
         }
     }
 
     private fun showToolTipEditor() {
         val fragment = TooltipEditorFragment()
-        replaceFragment(fragment)
-    }
-
-    private fun showRenderer() {
-        val fragment = RendererFragment()
         replaceFragment(fragment)
     }
 
