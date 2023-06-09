@@ -1,6 +1,7 @@
 package com.example.plotline_tooltip.ui.fragments
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -50,6 +51,7 @@ class RendererFragment : Fragment() {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
 
+        // Set tooltip text
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         tooltipTextView.text = tooltipText
 
@@ -58,6 +60,7 @@ class RendererFragment : Fragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true)
 
+        // Measure tooltip view
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
@@ -70,7 +73,16 @@ class RendererFragment : Fragment() {
         val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
         val tooltipY = anchorY + anchorView.height
 
-        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
+        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        val tooltipBottomY = tooltipY + tooltipHeight
+        val isTooltipBelowScreen = tooltipBottomY > screenHeight
+
+        if (isTooltipBelowScreen) {
+            val adjustedTooltipY = anchorY - tooltipHeight
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
+        } else {
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
+        }
 
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
         val arrowParams = arrowView.layoutParams as ViewGroup.MarginLayoutParams
