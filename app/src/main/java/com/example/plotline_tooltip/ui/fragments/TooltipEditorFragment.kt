@@ -16,6 +16,7 @@ import com.example.plotline_tooltip.R
 import com.example.plotline_tooltip.databinding.FragmentTooltipEditorBinding
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
+import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModelFactory
 
 class TooltipEditorFragment : Fragment() {
     private lateinit var binding: FragmentTooltipEditorBinding
@@ -26,7 +27,7 @@ class TooltipEditorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedViewModel = ViewModelProvider(requireActivity()).get(TooltipViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity(), TooltipViewModelFactory(requireContext())).get(TooltipViewModel::class.java)
         binding = FragmentTooltipEditorBinding.inflate(inflater, container, false)
 
         return binding.root
