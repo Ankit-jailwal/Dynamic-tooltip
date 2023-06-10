@@ -1,28 +1,18 @@
 package com.example.plotline_tooltip.ui.fragments
 
-import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
-import android.widget.PopupWindow
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.example.plotline_tooltip.R
 import com.example.plotline_tooltip.data.model.TooltipData
 import com.example.plotline_tooltip.databinding.FragmentRendererBinding
-import com.example.plotline_tooltip.databinding.FragmentTooltipEditorBinding
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModelFactory
 
 class RendererFragment : Fragment() {
-
     private lateinit var sharedViewModel: TooltipViewModel
     private lateinit var tooltipHandler: Handler
     private lateinit var tooltipHelper: TooltipHelper
