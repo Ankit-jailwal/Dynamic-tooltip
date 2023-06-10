@@ -14,6 +14,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
+import com.example.plotline_tooltip.data.model.TooltipData
 import com.example.plotline_tooltip.databinding.FragmentRendererBinding
 import com.example.plotline_tooltip.databinding.FragmentTooltipEditorBinding
 import com.example.plotline_tooltip.ui.tooltip.TooltipHelper
@@ -40,7 +41,6 @@ class RendererFragment : Fragment() {
 
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,33 +48,47 @@ class RendererFragment : Fragment() {
             tooltipHelper.hideTooltip()
         }
 
+        val tooltipData = TooltipData(
+            buttonId = "button1",
+            isVisible = true,
+            text = "Sample tooltip text",
+            textSize = 30,
+            padding = 20,
+            backgroundColor = "#FF4081", // Unique color: pink
+            textColor = "#FFF405", // White text color
+            cornerRadius = 3,
+            toolTipWidth = 200,
+            arrowWidth = 60,
+            arrowHeight = 50
+        )
+
         binding.buttonCenter.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonCenter, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonCenter, tooltipText, null)
             true
         }
 
         binding.buttonLeftBottom.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonLeftBottom, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonLeftBottom, tooltipText, null)
             true
         }
 
         binding.buttonLeftTop.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonLeftTop, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonLeftTop, tooltipText, null)
             true
         }
 
         binding.buttonRightTop.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonRightTop, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonRightTop, tooltipText, null)
             true
         }
 
         binding.buttonRightBottom.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonRightBottom, tooltipText)
+            tooltipHelper.showTooltip(binding.buttonRightBottom, tooltipText, null)
             true
         }
     }
