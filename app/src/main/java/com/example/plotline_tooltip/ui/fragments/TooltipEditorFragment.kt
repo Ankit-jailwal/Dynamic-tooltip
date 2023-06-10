@@ -1,15 +1,15 @@
 package com.example.plotline_tooltip.ui.fragments
 
+import DropdownAdapter
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
-import android.widget.PopupWindow
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.plotline_tooltip.R
@@ -35,7 +35,20 @@ class TooltipEditorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val buttons = listOf("button1", "button2", "button3", "button4", "button5")
+        val adapter = DropdownAdapter(requireContext(), buttons)
 
+        binding.targetElementSpinner.adapter = adapter
+
+        binding.targetElementSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedButton = parent.getItemAtPosition(position).toString()
+                Log.d("dev","$selectedButton")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
         binding.btnPrintData.setOnClickListener {
             showRenderer()
         }
