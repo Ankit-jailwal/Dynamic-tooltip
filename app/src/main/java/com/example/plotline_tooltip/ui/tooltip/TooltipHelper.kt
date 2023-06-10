@@ -45,13 +45,11 @@ class TooltipHelper(private val context: Context) {
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
         if (anchorY > (screenHeight + 500) / 2) {
-            // Anchor view is below the center of the screen
-            tooltipY = anchorY - tooltipHeight
-            arrowMarginTop = -arrowView.height
+            tooltipY = anchorY - anchorView.height
+            arrowMarginTop =  arrowView.height
         } else {
-            // Anchor view is above or at the center of the screen
             tooltipY = anchorY + anchorView.height
-            arrowMarginTop = tooltipHeight
+            arrowMarginTop = tooltipHeight + tooltipTextView.paddingTop
         }
 
         val tooltipParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
@@ -70,7 +68,7 @@ class TooltipHelper(private val context: Context) {
             (arrowView.parent as ViewGroup).removeView(arrowView)
         }
 
-        val isTooltipBelowScreen = tooltipY + tooltipHeight > screenHeight
+        val isTooltipBelowScreen = true
 
         if (isTooltipBelowScreen) {
             (tooltipView as FrameLayout).addView(arrowView)
@@ -79,9 +77,6 @@ class TooltipHelper(private val context: Context) {
         }
 
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
-
-
-        Log.d("dev","$anchorX  $anchorY  ")
 
     }
 
