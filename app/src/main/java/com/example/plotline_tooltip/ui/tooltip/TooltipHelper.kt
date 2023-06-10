@@ -16,8 +16,11 @@ class TooltipHelper(private val context: Context) {
     fun showTooltip(anchorView: View, tooltipText: String) {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
+        val tooltipContainer = tooltipView.findViewById<RelativeLayout>(R.id.tooltipContainer)
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         tooltipTextView.text = tooltipText
+
+        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
 
         val popupWindow = PopupWindow(
             tooltipView,
@@ -25,40 +28,60 @@ class TooltipHelper(private val context: Context) {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true
         )
+
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
-        val tooltipHeight = tooltipView.measuredHeight
+        val tooltipHeight = tooltipTextView.height + tooltipTextView.paddingTop + tooltipTextView.paddingBottom + arrowView.height
 
         val location = IntArray(2)
         anchorView.getLocationOnScreen(location)
         val anchorX = location[0]
         val anchorY = location[1]
 
-        val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
-        val tooltipY = anchorY + anchorView.height
+        val tooltipX = anchorX  +(anchorView.width / 2) - (tooltipWidth / 2)
+        val tooltipY: Int
+        val arrowMarginTop: Int
 
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        val tooltipBottomY = tooltipY + tooltipHeight
-        val isTooltipBelowScreen = tooltipBottomY > screenHeight
 
-        if (isTooltipBelowScreen) {
-            val adjustedTooltipY = anchorY - tooltipHeight
-            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
+        if (anchorY > (screenHeight + 500) / 2) {
+            // Anchor view is below the center of the screen
+            tooltipY = anchorY - tooltipHeight
+            arrowMarginTop = -arrowView.height
         } else {
-            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
+            // Anchor view is above or at the center of the screen
+            tooltipY = anchorY + anchorView.height
+            arrowMarginTop = tooltipHeight
         }
 
-        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+        val tooltipParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        tooltipParams.setMargins(0, arrowMarginTop, 0, 0)
+        tooltipContainer.layoutParams = tooltipParams
 
-        val arrowX = tooltipWidth / 2 - arrowView.width / 2
-        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
+        if (arrowView.parent != null) {
+            (arrowView.parent as ViewGroup).removeView(arrowView)
+        }
 
-        // Center the arrow horizontally
-        arrowParams.addRule(RelativeLayout.CENTER_HORIZONTAL)
-        arrowParams.setMargins(arrowX, 0, 0, 0)
-
+        val arrowParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        arrowParams.gravity = Gravity.CENTER_HORIZONTAL
         arrowView.layoutParams = arrowParams
-        Log.d("dev","$anchorX  $anchorY  $arrowX")
+
+        if (arrowView.parent != null) {
+            (arrowView.parent as ViewGroup).removeView(arrowView)
+        }
+
+        val isTooltipBelowScreen = tooltipY + tooltipHeight > screenHeight
+
+        if (isTooltipBelowScreen) {
+            (tooltipView as FrameLayout).addView(arrowView)
+        } else {
+            (tooltipView as FrameLayout).addView(arrowView, 0)
+        }
+
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
+
+
+        Log.d("dev","$anchorX  $anchorY  ")
 
     }
 
