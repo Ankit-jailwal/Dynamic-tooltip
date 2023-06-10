@@ -1,6 +1,7 @@
 package com.example.plotline_tooltip.ui.tooltip
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -49,13 +50,15 @@ class TooltipHelper(private val context: Context) {
 
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
 
-        val anchorCenterX = anchorX + anchorView.width / 2
-        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
-
+        val arrowX = tooltipWidth / 2 - arrowView.width / 2
         val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
+
+        // Center the arrow horizontally
+        arrowParams.addRule(RelativeLayout.CENTER_HORIZONTAL)
         arrowParams.setMargins(arrowX, 0, 0, 0)
 
         arrowView.layoutParams = arrowParams
+        Log.d("dev","$anchorX  $anchorY  $arrowX")
 
     }
 

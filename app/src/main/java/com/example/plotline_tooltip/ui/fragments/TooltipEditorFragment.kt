@@ -50,6 +50,27 @@ class TooltipEditorFragment : Fragment() {
             }
         }
         binding.btnPrintData.setOnClickListener {
+            val selectedItem = binding.targetElementSpinner.selectedItem.toString()
+            val tooltipText = binding.tooltipTextEditText.text.toString()
+            val textSize = binding.textSizeEditText.text.toString()
+            val padding = binding.paddingEditText.text.toString()
+            val backgroundColor = binding.backgroundColorEditText.text.toString()
+            val textColor = binding.textColorEditText.text.toString()
+            val cornerRadius = binding.cornerRadiusEditText.text.toString()
+            val tooltipWidth = binding.tooltipWidthEditText.text.toString()
+            val arrowWidth = binding.arrowWidthEditText.text.toString()
+            val arrowHeight = binding.arrowHeightEditText.text.toString()
+
+            println("Selected Item: $selectedItem")
+            println("Tooltip Text: $tooltipText")
+            println("Text Size: $textSize")
+            println("Padding: $padding")
+            println("Background Color: $backgroundColor")
+            println("Text Color: $textColor")
+            println("Corner Radius: $cornerRadius")
+            println("Tooltip Width: $tooltipWidth")
+            println("Arrow Width: $arrowWidth")
+            println("Arrow Height: $arrowHeight")
             showRenderer()
         }
     }
