@@ -27,8 +27,22 @@ class TooltipHelper(private val context: Context) {
 
         tooltipProp?.textSize?.let { tooltipTextView.textSize = it.toFloat() }
         tooltipProp?.padding?.let { tooltipTextView.setPadding(it, it, it, it) }
-        tooltipProp?.backgroundColor?.let { tooltipContainer.setBackgroundColor(Color.parseColor(it)) }
-        tooltipProp?.textColor?.let { tooltipTextView.setTextColor(Color.parseColor(it)) }
+        tooltipProp?.backgroundColor?.let { color ->
+            val parsedColor = try {
+                Color.parseColor(color)
+            } catch (e: IllegalArgumentException) {
+                Color.BLACK
+            }
+            tooltipContainer.setBackgroundColor(parsedColor)
+        }
+        tooltipProp?.textColor?.let { color ->
+            val parsedColor = try {
+                Color.parseColor(color)
+            } catch (e: IllegalArgumentException) {
+                Color.WHITE
+            }
+            tooltipTextView.setTextColor(parsedColor)
+        }
         tooltipProp?.toolTipWidth?.let {
             tooltipTextView.width = it
         }
@@ -60,7 +74,6 @@ class TooltipHelper(private val context: Context) {
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
         val isBottomRegionBoolean = anchorY > (screenHeight + 500) / 2
         if (isBottomRegionBoolean) {
-//            tooltipY = anchorY - anchorView.height
             tooltipY = screenHeight - tooltipHeight - anchorView.height / 2
             println("Height: ${tooltipHeight}")
             arrowView.rotation = 180f
@@ -99,8 +112,6 @@ class TooltipHelper(private val context: Context) {
             (tooltipView as FrameLayout).addView(arrowView, 0)
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
-
-
 
         Log.d("dev","$anchorX  $anchorY  ")
 

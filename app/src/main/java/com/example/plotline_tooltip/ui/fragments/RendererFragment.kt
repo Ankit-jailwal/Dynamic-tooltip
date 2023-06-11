@@ -44,7 +44,7 @@ class RendererFragment : Fragment() {
             text = "Sample tooltip text",
             textSize = 30,
             padding = 20,
-            backgroundColor = "#FF4081", // Unique color: pink
+            backgroundColor = "#000", // Unique color: pink
             textColor = "#FFF405", // White text color
             cornerRadius = 3,
             toolTipWidth = 200,
