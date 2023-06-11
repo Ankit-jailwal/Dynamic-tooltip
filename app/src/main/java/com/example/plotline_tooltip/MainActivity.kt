@@ -2,12 +2,11 @@ package com.example.plotline_tooltip
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.plotline_tooltip.ui.fragments.RendererFragment
 import com.example.plotline_tooltip.ui.fragments.TooltipEditorFragment
 import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModel
+import com.example.plotline_tooltip.ui.viewmodels.TooltipViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedViewModel: TooltipViewModel
@@ -16,20 +15,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sharedViewModel = ViewModelProvider(this).get(TooltipViewModel::class.java)
+        sharedViewModel = ViewModelProvider(this, TooltipViewModelFactory(this)).get(TooltipViewModel::class.java)
 
         if (savedInstanceState == null) {
-            showRenderer()
+            showToolTipEditor()
         }
     }
 
     private fun showToolTipEditor() {
         val fragment = TooltipEditorFragment()
-        replaceFragment(fragment)
-    }
-
-    private fun showRenderer() {
-        val fragment = RendererFragment()
         replaceFragment(fragment)
     }
 

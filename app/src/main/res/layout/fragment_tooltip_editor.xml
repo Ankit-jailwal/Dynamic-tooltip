@@ -20,8 +20,12 @@
 
     <Spinner
         android:id="@+id/target_element_spinner"
+        android:background="@drawable/spinner_background"
+        android:layout_marginTop="7dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/target_element_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -85,7 +89,7 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/text_size_label"
         app:layout_constraintStart_toStartOf="@id/textsize_container"
         />
@@ -106,6 +110,7 @@
         android:layout_marginTop="7dp"
         android:textSize="16sp"
         android:lineHeight="18sp"
+        android:layout_marginStart="17dp"
         android:textStyle="normal"
         android:textFontWeight="500"
         app:layout_constraintTop_toBottomOf="@id/tooltip_text_edit_text"
@@ -122,7 +127,8 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        android:layout_marginStart="17dp"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/padding_label"
         app:layout_constraintStart_toStartOf="@id/padding_container"
         />
@@ -156,6 +162,34 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/image_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image Url"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/image_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="Input"
+        app:layout_constraintTop_toBottomOf="@+id/image_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/text_color_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -165,7 +199,7 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
-        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/image_edit_text"
         app:layout_constraintStart_toStartOf="parent"
          />
 
@@ -215,11 +249,10 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/corner_radius_label"
         app:layout_constraintStart_toStartOf="@id/corner_radius_container"
         />
-
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/width_container"
@@ -240,6 +273,7 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
+        android:layout_marginStart="17dp"
         app:layout_constraintTop_toBottomOf="@+id/text_color_edit_text"
         app:layout_constraintStart_toStartOf="@id/width_container"
         />
@@ -254,7 +288,8 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        android:layout_marginStart="17dp"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/tooltip_width_label"
         app:layout_constraintStart_toStartOf="@id/width_container" />
 
@@ -290,7 +325,7 @@
         android:paddingVertical="5dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/arrow_width_label"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -308,6 +343,7 @@
         android:layout_height="wrap_content"
         android:text="Arrow Height"
         android:layout_marginTop="7dp"
+        android:layout_marginStart="17dp"
         android:textSize="16sp"
         android:lineHeight="18sp"
         android:textStyle="normal"
@@ -324,9 +360,10 @@
         android:layout_height="32dp"
         android:paddingHorizontal="12dp"
         android:paddingVertical="5dp"
+        android:layout_marginStart="17dp"
         android:hint="3"
         android:inputType="number"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintTop_toBottomOf="@+id/arrow_height_label"
         app:layout_constraintStart_toStartOf="@id/arrow_height_container"
         app:layout_constraintEnd_toEndOf="parent" />
