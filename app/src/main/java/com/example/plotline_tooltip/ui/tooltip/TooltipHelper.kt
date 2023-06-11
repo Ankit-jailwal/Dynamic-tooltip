@@ -33,6 +33,7 @@ class TooltipHelper(private val context: Context) {
         tooltipTextView.text = tooltipProp?.text ?: "tooltipText"
 
         tooltipImage.imageFromUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png")
+
         val path = Path()
         lateinit var shapeDrawable: ShapeDrawable
         tooltipProp?.arrowWidth?.let { width ->
@@ -63,6 +64,10 @@ class TooltipHelper(private val context: Context) {
         }
         tooltipProp?.toolTipWidth?.let {
             tooltipTextView.width = it
+            val tooltipImageLayoutParams = tooltipImage.layoutParams
+            tooltipImageLayoutParams.height = it
+            tooltipImageLayoutParams.width = it
+            tooltipImage.layoutParams = tooltipImageLayoutParams
         }
 
         val drawable = GradientDrawable()
@@ -89,6 +94,7 @@ class TooltipHelper(private val context: Context) {
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
 
+        println("Height: $tooltipHeight")
         val location = IntArray(2)
         anchorView.getLocationOnScreen(location)
         val anchorX = location[0]
