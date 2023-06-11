@@ -2,7 +2,9 @@ package com.example.plotline_tooltip.ui.viewmodels
 
 import com.example.plotline_tooltip.data.repository.TooltipRepository
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
@@ -19,12 +21,6 @@ class TooltipViewModel(private val context: Context): ViewModel() {
         val dao = TooltipDatabase.getDatabase(context).getTooltipDao()
         repository = TooltipRepository(dao)
         allTooltipData = repository.allTooltipData()
-    }
-
-    fun getToolTipDataById(id: String): LiveData<TooltipDataEntity?> {
-        return allTooltipData.map { tooltipDataList ->
-            tooltipDataList.find { it.buttonId == id }
-        }
     }
     fun insertItem(tooltipData: TooltipDataEntity) {
         viewModelScope.launch (Dispatchers.IO) {

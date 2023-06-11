@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Dao
 interface TooltipDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTooltipData(tooltipData: TooltipDataEntity)
 
     @Update

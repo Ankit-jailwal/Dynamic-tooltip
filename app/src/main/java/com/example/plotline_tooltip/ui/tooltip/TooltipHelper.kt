@@ -13,6 +13,7 @@ import android.view.*
 import android.widget.*
 import com.example.plotline_tooltip.R
 import com.example.plotline_tooltip.data.model.TooltipData
+import com.example.plotline_tooltip.data.model.TooltipDataEntity
 
 
 class TooltipHelper(private val context: Context) {
@@ -20,15 +21,14 @@ class TooltipHelper(private val context: Context) {
 
     fun showTooltip(
         anchorView: View,
-        tooltipText: String,
-        tooltipProp: TooltipData?
+        tooltipProp: TooltipDataEntity?
     ) {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
         val tooltipContainer = tooltipView.findViewById<RelativeLayout>(R.id.tooltipContainer)
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
-        tooltipTextView.text = tooltipProp?.text ?: tooltipText
+        tooltipTextView.text = tooltipProp?.text ?: "tooltipText"
 
         val path = Path()
         lateinit var shapeDrawable: ShapeDrawable
@@ -44,7 +44,7 @@ class TooltipHelper(private val context: Context) {
 
         path.close()
 
-        shapeDrawable.paint.color = Color.parseColor(tooltipProp?.backgroundColor) // Replace with your desired color
+        shapeDrawable.paint.color = Color.parseColor(tooltipProp?.backgroundColor)
 
         val arrowDrawable: Drawable = shapeDrawable
 

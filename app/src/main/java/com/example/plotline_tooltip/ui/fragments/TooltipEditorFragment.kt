@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
@@ -79,18 +80,6 @@ class TooltipEditorFragment : Fragment() {
                 arrowHeight
             )
             sharedViewModel.insertItem(data)
-
-
-//            println("Selected Item: $selectedItem")
-//            println("Tooltip Text: $tooltipText")
-//            println("Text Size: $textSize")
-//            println("Padding: $padding")
-//            println("Background Color: $backgroundColor")
-//            println("Text Color: $textColor")
-//            println("Corner Radius: $cornerRadius")
-//            println("Tooltip Width: $tooltipWidth")
-//            println("Arrow Width: $arrowWidth")
-//            println("Arrow Height: $arrowHeight")
             showRenderer()
         }
     }
