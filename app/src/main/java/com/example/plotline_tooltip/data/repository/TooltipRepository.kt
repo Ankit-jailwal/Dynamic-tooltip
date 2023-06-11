@@ -6,6 +6,7 @@ class TooltipRepository(private val tooltipDao: TooltipDao) {
     val allTooltipData: LiveData<List<TooltipDataEntity>> = tooltipDao.getAllTooltipData()
 
     suspend fun insert(tooltipData: TooltipDataEntity) {
+        println("debug2 $tooltipData")
         tooltipDao.insertTooltipData(tooltipData)
     }
 

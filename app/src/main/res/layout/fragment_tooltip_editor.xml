@@ -20,8 +20,12 @@
 
     <Spinner
         android:id="@+id/target_element_spinner"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_height="32dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/target_element_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -219,7 +223,6 @@
         app:layout_constraintTop_toBottomOf="@+id/corner_radius_label"
         app:layout_constraintStart_toStartOf="@id/corner_radius_container"
         />
-
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/width_container"

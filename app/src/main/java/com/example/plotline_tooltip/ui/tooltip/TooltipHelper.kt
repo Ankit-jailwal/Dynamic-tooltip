@@ -1,22 +1,38 @@
 package com.example.plotline_tooltip.ui.tooltip
 import android.content.Context
 import android.content.res.Resources
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.graphics.Color
+import android.util.Log
+import android.view.*
 import android.widget.*
 import com.example.plotline_tooltip.R
+import com.example.plotline_tooltip.data.model.TooltipData
 
 
 class TooltipHelper(private val context: Context) {
     private var tooltipLayout: View? = null
 
-    fun showTooltip(anchorView: View, tooltipText: String) {
+    fun showTooltip(
+        anchorView: View,
+        tooltipText: String,
+        tooltipProp: TooltipData?
+    ) {
         val inflater = anchorView.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
+        val tooltipContainer = tooltipView.findViewById<RelativeLayout>(R.id.tooltipContainer)
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
-        tooltipTextView.text = tooltipText
+        tooltipTextView.text = tooltipProp?.text ?: tooltipText
+
+        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+
+        tooltipProp?.textSize?.let { tooltipTextView.textSize = it.toFloat() }
+        tooltipProp?.padding?.let { tooltipTextView.setPadding(it, it, it, it) }
+        tooltipProp?.backgroundColor?.let { tooltipContainer.setBackgroundColor(Color.parseColor(it)) }
+        tooltipProp?.textColor?.let { tooltipTextView.setTextColor(Color.parseColor(it)) }
+        tooltipProp?.toolTipWidth?.let {
+            tooltipTextView.width = it
+        }
+
 
         val popupWindow = PopupWindow(
             tooltipView,
@@ -24,6 +40,7 @@ class TooltipHelper(private val context: Context) {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true
         )
+
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
@@ -33,29 +50,59 @@ class TooltipHelper(private val context: Context) {
         val anchorX = location[0]
         val anchorY = location[1]
 
-        val tooltipX = anchorX + anchorView.width / 2 - tooltipWidth / 2
-        val tooltipY = anchorY + anchorView.height
+        val tooltipX = anchorX + (anchorView.width / 2) - (tooltipWidth / 2)
+        val tooltipY: Int
+        val arrowMarginTop: Int
+        val arrowMarginBottom: Int
+        val arrowHeight = tooltipProp?.arrowHeight ?: 50
+        val arrowWidth = tooltipProp?.arrowWidth ?: 40
 
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        val tooltipBottomY = tooltipY + tooltipHeight
-        val isTooltipBelowScreen = tooltipBottomY > screenHeight
+        val isBottomRegionBoolean = anchorY > (screenHeight + 500) / 2
+        if (isBottomRegionBoolean) {
+//            tooltipY = anchorY - anchorView.height
+            tooltipY = screenHeight - tooltipHeight - anchorView.height / 2
+            println("Height: ${tooltipHeight}")
+            arrowView.rotation = 180f
+            arrowMarginBottom = arrowHeight
+            arrowMarginTop = 0
+        } else {
+            tooltipY = anchorY + anchorView.height
+            arrowMarginBottom = 0
+            arrowMarginTop = arrowHeight
+        }
+
+        val tooltipParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        tooltipParams.setMargins(0, arrowMarginTop, 0, arrowMarginBottom) // Add arrowView height to the bottom margin
+        tooltipContainer.layoutParams = tooltipParams
+
+        if (arrowView.parent != null) {
+            (arrowView.parent as ViewGroup).removeView(arrowView)
+        }
+
+        val arrowParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        arrowParams.gravity = if(isBottomRegionBoolean) Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM else Gravity.CENTER_HORIZONTAL  // Align arrow to the bottom center
+        arrowView.layoutParams = arrowParams
+
+        if (arrowView.parent != null) {
+            (arrowView.parent as ViewGroup).removeView(arrowView)
+        }
+        arrowView.layoutParams.width = arrowWidth
+        arrowView.layoutParams.height = arrowHeight
+
+        val isTooltipBelowScreen = false
 
         if (isTooltipBelowScreen) {
-            val adjustedTooltipY = anchorY - tooltipHeight
-            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, adjustedTooltipY)
+            (tooltipView as FrameLayout).addView(arrowView)
+            popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         } else {
+            (tooltipView as FrameLayout).addView(arrowView, 0)
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
 
-        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
 
-        val anchorCenterX = anchorX + anchorView.width / 2
-        val arrowX = anchorCenterX - tooltipX - arrowView.width / 2
 
-        val arrowParams = arrowView.layoutParams as RelativeLayout.LayoutParams
-        arrowParams.setMargins(arrowX, 0, 0, 0)
-
-        arrowView.layoutParams = arrowParams
+        Log.d("dev","$anchorX  $anchorY  ")
 
     }
 
