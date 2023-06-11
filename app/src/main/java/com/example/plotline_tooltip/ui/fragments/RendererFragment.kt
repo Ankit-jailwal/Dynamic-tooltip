@@ -37,6 +37,7 @@ class RendererFragment : Fragment() {
         val defaultTooltipData = TooltipDataEntity(
             buttonId = "id",
             isVisible = true,
+            image = "https://im.indiatimes.in/content/2022/Mar/Article-Body---2022-03-29T111113168_6244494def8d4.jpg",
             text = "Default text",
             textSize = 16,
             padding = 10,

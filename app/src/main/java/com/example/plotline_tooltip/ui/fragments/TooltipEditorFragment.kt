@@ -59,6 +59,7 @@ class TooltipEditorFragment : Fragment() {
             val tooltipText = binding.tooltipTextEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "Default text"
             val textSize = binding.textSizeEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 14
             val padding = binding.paddingEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 14
+            val image = binding.imageEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "https://im.indiatimes.in/content/2022/Mar/Article-Body---2022-03-29T111113168_6244494def8d4.jpg"
             val backgroundColor = binding.backgroundColorEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "#FF000000"
             val textColor = binding.textColorEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "#FFFFFFFF"
             val cornerRadius = binding.cornerRadiusEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 6
@@ -70,6 +71,7 @@ class TooltipEditorFragment : Fragment() {
                 selectedItem,
                 true,
                 tooltipText,
+                image,
                 textSize,
                 padding,
                 backgroundColor,

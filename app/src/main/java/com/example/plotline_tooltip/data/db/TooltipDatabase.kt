@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.plotline_tooltip.data.model.TooltipDataEntity
 
-@Database(entities = [TooltipDataEntity::class], version = 1)
+@Database(entities = [TooltipDataEntity::class], version = 2)
 abstract class TooltipDatabase: RoomDatabase() {
 
     abstract fun getTooltipDao() : TooltipDao
@@ -21,7 +21,7 @@ abstract class TooltipDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TooltipDatabase::class.java,
-                    "tooltip_db"
+                    "tooltip_db_prod"
                 ).build()
                 INSTANCE = instance
 

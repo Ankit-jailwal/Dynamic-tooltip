@@ -8,6 +8,4 @@ class TooltipRepository(private val tooltipDao: TooltipDao) {
     fun allTooltipData(): LiveData<List<TooltipDataEntity>> = tooltipDao.getAllTooltipData()
 
     suspend fun insert(tooltipData: TooltipDataEntity) = tooltipDao.insertTooltipData(tooltipData)
-
-    suspend fun update(tooltipData: TooltipDataEntity) = tooltipDao.insertTooltipData(tooltipData)
 }

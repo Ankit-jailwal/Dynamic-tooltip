@@ -3,16 +3,13 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Path
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.PathShape
-import android.util.Log
 import android.view.*
 import android.widget.*
 import com.example.plotline_tooltip.R
-import com.example.plotline_tooltip.data.model.TooltipData
 import com.example.plotline_tooltip.data.model.TooltipDataEntity
 import com.example.plotline_tooltip.ui.adapters.imageFromUrl
 
@@ -32,7 +29,6 @@ class TooltipHelper(private val context: Context) {
         val tooltipImage = tooltipView.findViewById<ImageView>(R.id.tooltip_image)
         tooltipTextView.text = tooltipProp?.text ?: "tooltipText"
 
-        tooltipImage.imageFromUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png")
 
         val path = Path()
         lateinit var shapeDrawable: ShapeDrawable
@@ -67,6 +63,7 @@ class TooltipHelper(private val context: Context) {
             val tooltipImageLayoutParams = tooltipImage.layoutParams
             tooltipImageLayoutParams.height = it
             tooltipImageLayoutParams.width = it
+            tooltipProp.image?.let { url -> tooltipImage.imageFromUrl(url) }
             tooltipImage.layoutParams = tooltipImageLayoutParams
         }
 
@@ -92,9 +89,9 @@ class TooltipHelper(private val context: Context) {
         )
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
-        val tooltipHeight = tooltipView.measuredHeight
 
-        println("Height: $tooltipHeight")
+
+
         val location = IntArray(2)
         anchorView.getLocationOnScreen(location)
         val anchorX = location[0]
@@ -106,11 +103,13 @@ class TooltipHelper(private val context: Context) {
         val arrowMarginBottom: Int
         val arrowHeight = tooltipProp?.arrowHeight ?: 50
         val arrowWidth = tooltipProp?.arrowWidth ?: 40
+        val tooltipHeight = tooltipView.measuredHeight + arrowHeight
+        println("Height: $tooltipHeight")
 
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
         val isBottomRegionBoolean = anchorY > (screenHeight + 500) / 2
         if (isBottomRegionBoolean) {
-            tooltipY = screenHeight - tooltipHeight - anchorView.height / 2
+            tooltipY = anchorY - tooltipHeight
             arrowView.rotation = 180f
             arrowMarginBottom = arrowHeight
             arrowMarginTop = 0

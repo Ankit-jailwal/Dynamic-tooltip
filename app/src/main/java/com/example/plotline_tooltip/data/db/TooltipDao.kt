@@ -9,9 +9,6 @@ interface TooltipDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTooltipData(tooltipData: TooltipDataEntity)
 
-    @Update
-    suspend fun updateTooltipData(tooltipData: TooltipDataEntity)
-
-    @Query("SELECT * FROM tooltip_table")
+    @Query("SELECT * FROM tooltip_table_prod")
     fun getAllTooltipData(): LiveData<List<TooltipDataEntity>>
 }

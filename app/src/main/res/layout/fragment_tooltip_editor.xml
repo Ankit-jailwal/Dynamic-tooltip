@@ -162,6 +162,34 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/image_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image Url"
+        android:layout_marginTop="7dp"
+        android:textSize="16sp"
+        android:lineHeight="18sp"
+        android:textStyle="normal"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/image_edit_text"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:hint="Input"
+        app:layout_constraintTop_toBottomOf="@+id/image_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/text_color_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -171,7 +199,7 @@
         android:lineHeight="18sp"
         android:textStyle="normal"
         android:textFontWeight="500"
-        app:layout_constraintTop_toBottomOf="@+id/background_color_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/image_edit_text"
         app:layout_constraintStart_toStartOf="parent"
          />
 
