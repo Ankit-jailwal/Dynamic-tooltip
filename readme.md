@@ -57,7 +57,7 @@ The mobile application is built using the following technologies and libraries:
 
 ### Download APK
 
-You can download the latest APK of the application from this [Google Drive link](https://drive.google.com/file/d/1nDlAFgowgQ9K_7w7Z6q1Lnuvjm-gCqyv/view?usp=sharing).
+You can download the latest APK of the application from this [Google Drive link](https://drive.google.com/file/d/1nDlAFgowgQ9K_7w7Z6q1Lnuvjm-gCqyv/view?usp=sharing). The APK size is approximately 7.3 MB.
 
 ### Usage
 
