@@ -44,9 +44,9 @@ class RendererFragment : Fragment() {
             text = "Sample tooltip text",
             textSize = 30,
             padding = 20,
-            backgroundColor = "#000", // Unique color: pink
+            backgroundColor = "#000000", // Unique color: pink
             textColor = "#FFF405", // White text color
-            cornerRadius = 3,
+            cornerRadius = 20,
             toolTipWidth = 200,
             arrowWidth = 100,
             arrowHeight = 50
@@ -54,6 +54,9 @@ class RendererFragment : Fragment() {
 
         binding.buttonCenter.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
+            val data2 = sharedViewModel.getToolTipDataById("button1")
+
+            println(data2.value)
             tooltipHelper.showTooltip(binding.buttonCenter, tooltipText, tooltipData)
             true
         }

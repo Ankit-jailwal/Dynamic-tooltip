@@ -6,12 +6,12 @@ import androidx.room.*
 
 @Dao
 interface TooltipDao {
-    @Query("SELECT * FROM tooltip_data")
-    fun getAllTooltipData(): LiveData<List<TooltipDataEntity>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTooltipData(tooltipData: TooltipDataEntity)
 
     @Update
     suspend fun updateTooltipData(tooltipData: TooltipDataEntity)
+
+    @Query("SELECT * FROM tooltip_table")
+    fun getAllTooltipData(): LiveData<List<TooltipDataEntity>>
 }

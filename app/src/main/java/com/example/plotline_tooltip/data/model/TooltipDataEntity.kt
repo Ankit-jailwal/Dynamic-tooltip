@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "tooltip_data")
+@Entity(tableName = "tooltip_table")
 data class TooltipDataEntity(
     @ColumnInfo(name = "buttonId") @PrimaryKey val buttonId: String,
     @ColumnInfo(name = "isVisible") val isVisible: Boolean?,

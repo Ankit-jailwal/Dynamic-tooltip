@@ -52,6 +52,7 @@ class TooltipEditorFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
+
         binding.btnPrintData.setOnClickListener {
             val selectedItem = binding.targetElementSpinner.selectedItem.toString()
             val tooltipText = binding.tooltipTextEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "Default text"
@@ -79,9 +80,7 @@ class TooltipEditorFragment : Fragment() {
             )
             sharedViewModel.insertItem(data)
 
-            val data2 = sharedViewModel.getToolTipDataById("button1")
 
-            println(data2)
 //            println("Selected Item: $selectedItem")
 //            println("Tooltip Text: $tooltipText")
 //            println("Text Size: $textSize")

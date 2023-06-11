@@ -2,6 +2,7 @@ package com.example.plotline_tooltip.ui.tooltip
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -27,14 +28,6 @@ class TooltipHelper(private val context: Context) {
 
         tooltipProp?.textSize?.let { tooltipTextView.textSize = it.toFloat() }
         tooltipProp?.padding?.let { tooltipTextView.setPadding(it, it, it, it) }
-        tooltipProp?.backgroundColor?.let { color ->
-            val parsedColor = try {
-                Color.parseColor(color)
-            } catch (e: IllegalArgumentException) {
-                Color.BLACK
-            }
-            tooltipContainer.setBackgroundColor(parsedColor)
-        }
         tooltipProp?.textColor?.let { color ->
             val parsedColor = try {
                 Color.parseColor(color)
@@ -47,7 +40,21 @@ class TooltipHelper(private val context: Context) {
             tooltipTextView.width = it
         }
 
+        val drawable = GradientDrawable()
 
+        val cornerRadius = 20f
+        drawable.cornerRadius = tooltipProp?.cornerRadius?.toFloat() ?: 6F
+
+        tooltipProp?.backgroundColor?.let { color ->
+            val parsedColor = try {
+                Color.parseColor(color)
+            } catch (e: IllegalArgumentException) {
+                Color.BLACK
+            }
+            drawable.setColor(parsedColor)
+        }
+
+        tooltipContainer.background = drawable
         val popupWindow = PopupWindow(
             tooltipView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
