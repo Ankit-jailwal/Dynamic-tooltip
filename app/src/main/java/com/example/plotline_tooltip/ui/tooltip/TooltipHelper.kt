@@ -2,7 +2,12 @@ package com.example.plotline_tooltip.ui.tooltip
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.Path
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.PathShape
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -22,9 +27,26 @@ class TooltipHelper(private val context: Context) {
         val tooltipView = inflater.inflate(R.layout.custom_tooltip_layout, null)
         val tooltipContainer = tooltipView.findViewById<RelativeLayout>(R.id.tooltipContainer)
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
+        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
         tooltipTextView.text = tooltipProp?.text ?: tooltipText
 
-        val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+        val path = Path()
+        lateinit var shapeDrawable: ShapeDrawable
+        tooltipProp?.arrowWidth?.let { width ->
+            tooltipProp.arrowHeight?.let {height ->
+            path.moveTo(width.toFloat() / 2, 0f)
+            path.lineTo(width.toFloat(), height.toFloat())
+            path.lineTo(0f, height.toFloat())
+            path.lineTo(width.toFloat() / 2, 0f)
+               shapeDrawable = ShapeDrawable(PathShape(path, width.toFloat(), height.toFloat()))
+            }
+        }
+
+        path.close()
+
+        shapeDrawable.paint.color = Color.parseColor(tooltipProp?.backgroundColor) // Replace with your desired color
+
+        val arrowDrawable: Drawable = shapeDrawable
 
         tooltipProp?.textSize?.let { tooltipTextView.textSize = it.toFloat() }
         tooltipProp?.padding?.let { tooltipTextView.setPadding(it, it, it, it) }
@@ -42,7 +64,6 @@ class TooltipHelper(private val context: Context) {
 
         val drawable = GradientDrawable()
 
-        val cornerRadius = 20f
         drawable.cornerRadius = tooltipProp?.cornerRadius?.toFloat() ?: 6F
 
         tooltipProp?.backgroundColor?.let { color ->
@@ -61,7 +82,6 @@ class TooltipHelper(private val context: Context) {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true
         )
-
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
         val tooltipHeight = tooltipView.measuredHeight
@@ -109,6 +129,7 @@ class TooltipHelper(private val context: Context) {
         }
         arrowView.layoutParams.width = arrowWidth
         arrowView.layoutParams.height = arrowHeight
+        arrowView.background = arrowDrawable
 
         val isTooltipBelowScreen = false
 
@@ -119,8 +140,6 @@ class TooltipHelper(private val context: Context) {
             (tooltipView as FrameLayout).addView(arrowView, 0)
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, tooltipX, tooltipY)
         }
-
-        Log.d("dev","$anchorX  $anchorY  ")
 
     }
 
