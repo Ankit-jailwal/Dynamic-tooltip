@@ -29,12 +29,10 @@ class TooltipHelper(private val context: Context) {
         tooltipProp?.padding?.let { tooltipTextView.setPadding(it, it, it, it) }
         tooltipProp?.backgroundColor?.let { tooltipContainer.setBackgroundColor(Color.parseColor(it)) }
         tooltipProp?.textColor?.let { tooltipTextView.setTextColor(Color.parseColor(it)) }
-//        tooltipProp?.toolTipWidth?.let {
-//            val layoutParams = RelativeLayout.LayoutParams(it, RelativeLayout.LayoutParams.WRAP_CONTENT)
-//            tooltipContainer.layoutParams = layoutParams
-//        }
-        tooltipProp?.arrowWidth?.let { arrowView.layoutParams.width = it }
-        tooltipProp?.arrowHeight?.let { arrowView.layoutParams.height = it }
+        tooltipProp?.toolTipWidth?.let {
+            tooltipTextView.width = it
+        }
+
 
         val popupWindow = PopupWindow(
             tooltipView,
@@ -45,7 +43,7 @@ class TooltipHelper(private val context: Context) {
 
         tooltipView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val tooltipWidth = tooltipView.measuredWidth
-        val tooltipHeight = tooltipTextView.height + tooltipTextView.paddingTop + tooltipTextView.paddingBottom + arrowView.height
+        val tooltipHeight = tooltipView.measuredHeight
 
         val location = IntArray(2)
         anchorView.getLocationOnScreen(location)
@@ -56,20 +54,22 @@ class TooltipHelper(private val context: Context) {
         val tooltipY: Int
         val arrowMarginTop: Int
         val arrowMarginBottom: Int
-        var arrowHeight = 64
+        val arrowHeight = tooltipProp?.arrowHeight ?: 50
+        val arrowWidth = tooltipProp?.arrowWidth ?: 40
 
         val screenHeight = Resources.getSystem().displayMetrics.heightPixels
         val isBottomRegionBoolean = anchorY > (screenHeight + 500) / 2
         if (isBottomRegionBoolean) {
-            tooltipY = anchorY - anchorView.height
+//            tooltipY = anchorY - anchorView.height
+            tooltipY = screenHeight - tooltipHeight - anchorView.height / 2
+            println("Height: ${tooltipHeight}")
             arrowView.rotation = 180f
-            println("arrowH ${arrowHeight}")
-            arrowMarginBottom = tooltipHeight + tooltipTextView.paddingBottom
+            arrowMarginBottom = arrowHeight
             arrowMarginTop = 0
         } else {
             tooltipY = anchorY + anchorView.height
             arrowMarginBottom = 0
-            arrowMarginTop = tooltipHeight + tooltipTextView.paddingTop
+            arrowMarginTop = arrowHeight
         }
 
         val tooltipParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
@@ -87,8 +87,10 @@ class TooltipHelper(private val context: Context) {
         if (arrowView.parent != null) {
             (arrowView.parent as ViewGroup).removeView(arrowView)
         }
+        arrowView.layoutParams.width = arrowWidth
+        arrowView.layoutParams.height = arrowHeight
 
-        val isTooltipBelowScreen = true
+        val isTooltipBelowScreen = false
 
         if (isTooltipBelowScreen) {
             (tooltipView as FrameLayout).addView(arrowView)

@@ -48,13 +48,13 @@ class RendererFragment : Fragment() {
             textColor = "#FFF405", // White text color
             cornerRadius = 3,
             toolTipWidth = 200,
-            arrowWidth = 60,
+            arrowWidth = 100,
             arrowHeight = 50
         )
 
         binding.buttonCenter.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonCenter, tooltipText, null)
+            tooltipHelper.showTooltip(binding.buttonCenter, tooltipText, tooltipData)
             true
         }
 
@@ -66,7 +66,7 @@ class RendererFragment : Fragment() {
 
         binding.buttonLeftTop.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonLeftTop, tooltipText, null)
+            tooltipHelper.showTooltip(binding.buttonLeftTop, tooltipText, tooltipData)
             true
         }
 
@@ -78,7 +78,7 @@ class RendererFragment : Fragment() {
 
         binding.buttonRightBottom.setOnLongClickListener {
             val tooltipText = "This is a tooltip message"
-            tooltipHelper.showTooltip(binding.buttonRightBottom, tooltipText, null)
+            tooltipHelper.showTooltip(binding.buttonRightBottom, tooltipText, tooltipData)
             true
         }
     }
