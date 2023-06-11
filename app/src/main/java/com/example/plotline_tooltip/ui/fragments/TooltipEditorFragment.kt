@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
@@ -52,11 +53,13 @@ class TooltipEditorFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
+
         binding.btnPrintData.setOnClickListener {
             val selectedItem = binding.targetElementSpinner.selectedItem.toString()
             val tooltipText = binding.tooltipTextEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "Default text"
             val textSize = binding.textSizeEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 14
             val padding = binding.paddingEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 14
+            val image = binding.imageEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "https://im.indiatimes.in/content/2022/Mar/Article-Body---2022-03-29T111113168_6244494def8d4.jpg"
             val backgroundColor = binding.backgroundColorEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "#FF000000"
             val textColor = binding.textColorEditText.text.toString()?.takeIf { it.isNotEmpty() } ?: "#FFFFFFFF"
             val cornerRadius = binding.cornerRadiusEditText.text.toString()?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: 6
@@ -68,6 +71,7 @@ class TooltipEditorFragment : Fragment() {
                 selectedItem,
                 true,
                 tooltipText,
+                image,
                 textSize,
                 padding,
                 backgroundColor,
@@ -78,20 +82,6 @@ class TooltipEditorFragment : Fragment() {
                 arrowHeight
             )
             sharedViewModel.insertItem(data)
-
-            val data2 = sharedViewModel.getToolTipDataById("button1")
-
-            println(data2)
-//            println("Selected Item: $selectedItem")
-//            println("Tooltip Text: $tooltipText")
-//            println("Text Size: $textSize")
-//            println("Padding: $padding")
-//            println("Background Color: $backgroundColor")
-//            println("Text Color: $textColor")
-//            println("Corner Radius: $cornerRadius")
-//            println("Tooltip Width: $tooltipWidth")
-//            println("Arrow Width: $arrowWidth")
-//            println("Arrow Height: $arrowHeight")
             showRenderer()
         }
     }
