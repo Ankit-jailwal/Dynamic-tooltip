@@ -28,6 +28,7 @@ class TooltipHelper(private val context: Context) {
         val tooltipContainer = tooltipView.findViewById<RelativeLayout>(R.id.tooltipContainer)
         val tooltipTextView = tooltipView.findViewById<TextView>(R.id.tooltipTextView)
         val arrowView = tooltipView.findViewById<View>(R.id.arrowView)
+        val tooltipImage = tooltipView.findViewById<ImageView>(R.id.tooltip_image)
         tooltipTextView.text = tooltipProp?.text ?: "tooltipText"
 
         val path = Path()
@@ -102,7 +103,6 @@ class TooltipHelper(private val context: Context) {
         val isBottomRegionBoolean = anchorY > (screenHeight + 500) / 2
         if (isBottomRegionBoolean) {
             tooltipY = screenHeight - tooltipHeight - anchorView.height / 2
-            println("Height: ${tooltipHeight}")
             arrowView.rotation = 180f
             arrowMarginBottom = arrowHeight
             arrowMarginTop = 0
