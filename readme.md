@@ -10,14 +10,15 @@ The design for the mobile screen and tooltip component can be found in this [Fig
 
 ## Screenshots
 ### 1. Customize tooltip
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/53c79743-a541-4e15-9d23-cab675f07928" alt="53c79743-a541-4e15-9d23-cab675f07928" width="220"/>
 
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/f469951e-f5a1-4463-a07b-17378710a703" alt="f469951e-f5a1-4463-a07b-17378710a703" width="220"/>
+  
 ### 2. Tooltip testing
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/9ad73b4d-c6a1-479b-9616-4030df376e34" alt="Screenshot 1" width="190"/>
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/64ae3d15-a9af-4f1d-809d-71762ac84e87" alt="9fac5a71-8f09-4aad-a8a1-293aabd9b7ed" width="190"/>
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/902e6fa0-3a0e-490a-ab8d-dd042790e0d7" alt="6c9e7928-c4d5-4824-8608-6e052c9e9c24" width="190"/>
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/1320e27f-3367-4eba-9f13-e21fb53f0d7b" alt="c260a305-b5ca-486e-b566-5e95b79d6e49" width="190"/>
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/db287f87-6da7-4857-9d04-1aa990940705" alt="a93cf9dc-2af8-4f93-9e63-ff50f9084a6a" width="190"/>
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/f469951e-f5a1-4463-a07b-17378710a703" alt="f469951e-f5a1-4463-a07b-17378710a703" width="190"/>
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/dcb41982-98f6-40e3-86d9-2e963b06db7f" alt="dcb41982-98f6-40e3-86d9-2e963b06db7f" width="190"/>
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/82e05fc3-efa2-4e70-a88e-c1d6093fc60b" alt="82e05fc3-efa2-4e70-a88e-c1d6093fc60b" width="190"/>
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/8a081f4b-0753-4e27-b019-2228fd8cf30b" alt="8a081f4b-0753-4e27-b019-2228fd8cf30b" width="190"/>
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/f4507b1d-2ce5-472d-9b92-22b797b2afab" alt="f4507b1d-2ce5-472d-9b92-22b797b2afab" width="190"/>
 
 
 ## Features
