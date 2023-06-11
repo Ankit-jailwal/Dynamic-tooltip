@@ -14,6 +14,7 @@ import android.widget.*
 import com.example.plotline_tooltip.R
 import com.example.plotline_tooltip.data.model.TooltipData
 import com.example.plotline_tooltip.data.model.TooltipDataEntity
+import com.example.plotline_tooltip.ui.adapters.imageFromUrl
 
 
 class TooltipHelper(private val context: Context) {
@@ -31,6 +32,7 @@ class TooltipHelper(private val context: Context) {
         val tooltipImage = tooltipView.findViewById<ImageView>(R.id.tooltip_image)
         tooltipTextView.text = tooltipProp?.text ?: "tooltipText"
 
+        tooltipImage.imageFromUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png")
         val path = Path()
         lateinit var shapeDrawable: ShapeDrawable
         tooltipProp?.arrowWidth?.let { width ->
