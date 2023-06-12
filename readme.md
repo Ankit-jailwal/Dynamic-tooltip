@@ -9,9 +9,8 @@ Plotline Dynamic Tooltip is a mobile application that provides in-app nudges in 
 The design for the mobile screen and tooltip component can be found in this [Figma file](https://www.figma.com/file/TUzRJKgNhcYiL86rUx0Ojx/Plotline-Mobile-Assignment?type=design&node-id=0-1&t=5POQcvrnxoUHKH8H-0).
 
 ## Screenshots
-### 1. Customize tooltip
-
-  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/f469951e-f5a1-4463-a07b-17378710a703" alt="f469951e-f5a1-4463-a07b-17378710a703" width="220"/>
+### 1. Customize tooltip properties
+  <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/da30b4cc-2862-4927-ae8d-ff5430c8b597" alt="da30b4cc-2862-4927-ae8d-ff5430c8b597" width="220"/>
   
 ### 2. Tooltip testing
   <img src="https://github.com/Ankit-jailwal/PlotLine-assignment/assets/55527244/f469951e-f5a1-4463-a07b-17378710a703" alt="f469951e-f5a1-4463-a07b-17378710a703" width="190"/>
