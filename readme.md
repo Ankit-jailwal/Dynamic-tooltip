@@ -38,7 +38,7 @@ The design for the mobile screen and tooltip component can be found in this [Fig
 4. **Tooltip Image Support**
    - The ability to include images inside the tooltips.
    - Supports various image formats such as PNG and JPEG.
-   - Images can be fetched from local or remote sources.
+   - Images can be fetched from URL.
 
 ## Implementation Details
 
