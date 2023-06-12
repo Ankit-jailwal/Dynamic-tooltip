@@ -69,7 +69,7 @@ You can download the latest APK of the application from this [Google Drive link]
 
 1. Launch the mobile application.
 2. On the main screen, explore the mobile screen preview with various buttons.
-3. Tap on the "Configure Tooltip" button to access the tooltip configuration screen.
+3. Tap on the "Render Tooltip" button to access the tooltip  editor screen.
 4. Set the target element, position, style, and text for the tooltip.
 5. Optionally, include an image inside the tooltip.
 6. Save the configuration.
