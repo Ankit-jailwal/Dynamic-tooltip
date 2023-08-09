@@ -1,8 +1,6 @@
-# Plotline Dynamic Tooltip
+# Dynamic Tooltip
 
-![App Icon](https://uploads-ssl.webflow.com/62bc395da3c33ed00dcc1317/6450f144e77b77f1598b596f_Plotline%20logo.svg)
-
-Plotline Dynamic Tooltip is a mobile application that provides in-app nudges in the form of tooltips to guide users through various features. Tooltips are rendered with dynamic positioning, style, and text on the target element.
+Dynamic Tooltip is a mobile application that provides in-app nudges in the form of tooltips to guide users through various features. Tooltips are rendered with dynamic positioning, style, and text on the target element.
 
 ## Design
 
